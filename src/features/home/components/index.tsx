@@ -5,23 +5,11 @@ import {
     View,
     Text,
     FlatList,
-    Platform,
     Image,
     TouchableHighlight
   } from 'react-native';  
 import styles from './styles';
-
-interface Reservation {
-  id: string;
-  name: string;
-  hotelName: string;
-  arrivalDate: string;
-  departureDate: string;
-}
-
-interface ListItem {
-  item: Reservation
-}
+import { ListItem } from '../../../models/reservation';
 
 export const query = (first=10) => gql`
         query{
@@ -57,7 +45,7 @@ const Home = (props) => {
                 <View style={styles.cardContainer}>
                   <Image
                     style={styles.image}
-                    source={{ uri: 'https://www.dike.lib.ia.us/images/sample-1.jpg/image' }}
+                    source={require('../../../assets/hilton.jpeg')}
                   />
                   <View style={styles.textContainer}>
                     <Text style={styles.text}>Name: {item.name}</Text>

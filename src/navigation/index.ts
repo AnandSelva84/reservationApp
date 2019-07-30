@@ -1,6 +1,6 @@
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 import Home from '../features/home/components';
-import CreateReservation from '../features/create-reservation/components';
+import CreateReservation from '../features/create_reservation/components';
 
 console.disableYellowBox = true;
 

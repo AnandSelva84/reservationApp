@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import gql from "graphql-tag";
 import { Mutation, MutationFn, OperationVariables, MutationResult } from "react-apollo";
-import { TextField } from 'react-native-material-textfield-reborn';
+import { TextField } from 'react-native-material-textfield';
 import { query } from '../../home/components'
 import styles from './styles';
 
@@ -80,7 +80,7 @@ class CreateReservation extends Component {
                                     textColor={'#515151'}
                                     lineWidth={1.5}
                                     inputContainerPadding={2}
-                                    label='Name'
+                                    label='Guest Name'
                                     returnKeyType="go"
                                     onChangeText={(name) => this.setState({ name })}
                                     value={this.state.name}
@@ -122,7 +122,7 @@ class CreateReservation extends Component {
                                     textColor={'#515151'}
                                     lineWidth={1.5}
                                     inputContainerPadding={2}
-                                    label='Arrived mm/dd/yyyy'
+                                    label='Arrival mm/dd/yyyy'
                                     returnKeyType="go"
                                     onChangeText={(arrivalDate) => this.setState({ arrivalDate })}
                                     value={this.state.arrivalDate}
