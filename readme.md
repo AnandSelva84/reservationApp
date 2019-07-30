@@ -8,7 +8,7 @@
 - also install `react-native-cli` globally
 - run `react-native run-ios` for ios and `react-native run-android` for android
 
-##Test
+## Test
 - run `npm test`
 
 ## Code organization
@@ -22,6 +22,10 @@
     - screens           - presentational components
 - src/models            - model/schema for the application
 - src/navigation        - contains navigation logic
+
+## Home screen
+
+- fetches list of reservations, total 10 at a time on scroll.
 
 
 
