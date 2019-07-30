@@ -51,7 +51,8 @@ class CreateReservation extends Component {
         ]
         for (let i = 0; i < fields.length; i++) {
             if (!this.state[fields[i].key]) {
-                alert(`${fields[i].value} cannot be empty`)
+                alert(`${fields[i].value} cannot be empty`);
+                return;
             }
         }
         createReservation({
