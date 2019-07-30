@@ -5,9 +5,9 @@
 import  { ScrollView, TouchableOpacity } from 'react-native';
 import React from 'react';
 import { MockedProvider } from 'react-apollo/test-utils';
-import CreateReservation, { CREATE_RESERVATION } from '../screens/CreateReservation';
+import CreateReservation, { CREATE_RESERVATION } from '..';
 import { mount } from 'enzyme';
-import { TextField } from 'react-native-material-textfield-reborn';
+import { TextField } from '../features/create-reservation/node_modules/react-native-material-textfield-reborn';
 const createTestProps = (props: Object) => ({
   ...props
 });

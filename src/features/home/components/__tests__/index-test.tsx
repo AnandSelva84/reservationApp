@@ -7,8 +7,9 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 import { View, FlatList } from 'react-native';
 import { MockedProvider } from 'react-apollo/test-utils';
+import Home, {query} from '..';
 const wait = require('waait');
-import  Home, { query } from '../screens/Home';
+
 
 const createTestProps = (props: Object) => ({
   ...props

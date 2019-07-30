@@ -1,15 +1,15 @@
 import React, { Component, Fragment } from 'react';
 import {
     ScrollView,
-    StyleSheet,
     Text,
     TouchableOpacity,
     View
 } from 'react-native';
 import gql from "graphql-tag";
-import { Mutation } from "react-apollo";
+import { Mutation, MutationFn, OperationVariables, MutationResult } from "react-apollo";
 import { TextField } from 'react-native-material-textfield-reborn';
-import { query } from './Home'
+import { query } from '../../home/components'
+import styles from './styles';
 
 export const CREATE_RESERVATION = gql`
   mutation CreateReservation($data: ReservationCreateInput!) {
@@ -24,12 +24,12 @@ export const CREATE_RESERVATION = gql`
 `;
 
 class CreateReservation extends Component {
-	public state: any;
-	public props: any;
-	public setState: any;
-	public name: any;
-	public departureDate: any;
-	public arrivalDate: any;
+    public state: any;
+    public props: any;
+    public setState: any;
+    public name: any;
+    public departureDate: any;
+    public arrivalDate: any;
 
     constructor(props) {
         super(props);
@@ -44,13 +44,13 @@ class CreateReservation extends Component {
 
     handleSubmit = (createReservation) => {
         const fields = [
-            { key: "name", value: "Name" }, 
-            { key: "hotelName", value: "Hotel Name" }, 
-            { key: "arrivalDate", value: "Arrival Date" }, 
-            { key: "departureDate", value: "Departure Date"}
+            { key: "name", value: "Name" },
+            { key: "hotelName", value: "Hotel Name" },
+            { key: "arrivalDate", value: "Arrival Date" },
+            { key: "departureDate", value: "Departure Date" }
         ]
-        for(let i=0; i < fields.length; i++){
-            if(!this.state[fields[i].key]){
+        for (let i = 0; i < fields.length; i++) {
+            if (!this.state[fields[i].key]) {
                 alert(`${fields[i].value} cannot be empty`)
             }
         }
@@ -62,12 +62,12 @@ class CreateReservation extends Component {
 
     render() {
         return (
-                <Mutation mutation={CREATE_RESERVATION}
-                    refetchQueries={[{ query: query(10) }]} 
-                >
-                    {(createReservation, { data }) => (
-                        <Fragment>
-                            {data && this.props.navigation.navigate("Home")}
+            <Mutation mutation={CREATE_RESERVATION}
+                refetchQueries={[{ query: query(10) }]}
+            >
+                {(createReservation: MutationFn<any, OperationVariables>, { data }:  MutationResult<any>) => (
+                    <Fragment>
+                        {data && this.props.navigation.navigate("Home")}
                         <ScrollView style={styles.parentView}>
                             <View style={styles.messageView}>
                                 <Text style={styles.header}>New Reservation</Text>
@@ -122,7 +122,7 @@ class CreateReservation extends Component {
                                     textColor={'#515151'}
                                     lineWidth={1.5}
                                     inputContainerPadding={2}
-                                    label='Arrival mm/dd/yyyy'
+                                    label='Arrived mm/dd/yyyy'
                                     returnKeyType="go"
                                     onChangeText={(arrivalDate) => this.setState({ arrivalDate })}
                                     value={this.state.arrivalDate}
@@ -139,58 +139,11 @@ class CreateReservation extends Component {
                             </View>
 
                         </ScrollView>
-                        </Fragment>
-                  )}
-                </Mutation>
+                    </Fragment>
+                )}
+            </Mutation>
         );
     }
 }
-
-const styles = StyleSheet.create({
-    padding: { 
-        padding: 20 
-    },
-    parentView: {
-        flex: 1,
-        padding: 20,
-        backgroundColor: '#fff'
-    },
-    icon: {
-        paddingTop: 20,
-        height: 50,
-        width: 50
-    },
-    messageView: {
-        paddingTop: 50
-    },
-    header: {
-        fontWeight: '700',
-        fontSize: 18,
-        color: '#435873'
-    },
-    blackMessage: {
-        fontWeight: '700',
-        fontSize: 32,
-        color: '#282828'
-    },
-    centerView: {
-        flex: 1,
-        justifyContent: 'center',
-        paddingBottom: 200
-    },
-    buttonContainer: {
-        backgroundColor: '#435873',
-        paddingVertical: 10,
-        height: 50,
-        justifyContent: 'center',
-        borderRadius: 5
-    },
-    buttonText: {
-        textAlign: 'center',
-        color: '#fff',
-        fontWeight: '700',
-        fontSize: 16
-    }
-});
 
 export default CreateReservation;
